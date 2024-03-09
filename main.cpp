@@ -22,7 +22,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPWSTR,
     if (!hWnd) { return 0; }
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
-
+    //test
     console::Console _console{};
     if (_console.successful) {
         console::set_visible(true);
