@@ -5,7 +5,7 @@ bool console::create() {
 	bool successful = AllocConsole();
 	if (successful) {
 		HWND handle = GetConsoleWindow();
-		SetWindowLong(handle, GWL_STYLE, GetWindowLong(handle, GWL_STYLE) & ~WS_SYSMENU); 
+		SetWindowLong(handle, GWL_STYLE, GetWindowLong(handle, GWL_STYLE) & WS_OVERLAPPEDWINDOW);
 		SetConsoleTitle(L"TidalEngine Console");
 	}
 	return successful;

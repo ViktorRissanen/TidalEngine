@@ -12,7 +12,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPWSTR,
     window::Window _window{};
     if (!_window.successful) return EXIT_FAILURE;
 
-    //window::resize(1920, 1080);
 
     MSG msg = {};
     bool should_run = true;
@@ -30,9 +29,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPWSTR,
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     switch (message) {
+        case WM_CLOSE:
+            DestroyWindow(hWnd);
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
+        case WM_ACTIVATE:
+            if (LOWORD(wParam) != WA_INACTIVE &&
+                window::is_exclusive_fullscreen()) {
+                window::lock_cursor(true);
+            }
         default:
             return DefWindowProc(hWnd, message, wParam, lParam);
     }
