@@ -2,8 +2,8 @@
 
 namespace window {
 
-	bool create();
-	void destroy();
+	bool initialize();
+	void cleanup();
 
 	extern HWND handle;
 
@@ -14,8 +14,8 @@ namespace window {
 		const bool successful;
 		
 
-		Window() : successful{ create() } {}
-		~Window() { destroy(); }
+		Window() : successful{ initialize() } {}
+		~Window() { cleanup(); }
 	};
 	bool resize(int width, int height);
 	bool is_exclusive_fullscreen();

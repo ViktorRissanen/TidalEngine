@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "console.h"
 
-bool console::create() {
+bool console::initialize() {
 	bool successful = AllocConsole();
 	if (successful) {
 		HWND handle = GetConsoleWindow();
@@ -11,7 +11,7 @@ bool console::create() {
 	return successful;
 }
 
-void console::destroy() {
+void console::cleanup() {
 	FreeConsole();
 }
 

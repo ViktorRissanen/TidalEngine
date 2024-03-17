@@ -7,7 +7,7 @@ namespace window {
     extern HWND handle = nullptr;
 }
 
-bool window::create() {
+bool window::initialize() {
     WNDCLASSEXW wcex = {};
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
@@ -31,7 +31,7 @@ bool window::create() {
 	return true;
 }
 
-void window::destroy() {
+void window::cleanup() {
     if(!handle) return;
 
     DestroyWindow(handle);

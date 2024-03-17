@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "console.h"
-#include "window.h"
+#include "directx11.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPWSTR, _In_ int nCmdShow) {
     console::Console _console{};
@@ -12,6 +12,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPWSTR,
     window::Window _window{};
     if (!_window.successful) return EXIT_FAILURE;
 
+    directx11::Graphics _graphics{};
+    if (!_graphics.successful) return EXIT_FAILURE;
 
     MSG msg = {};
     bool should_run = true;
@@ -19,6 +21,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ LPWSTR,
         while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
+            directx11::Render();
             if (msg.message == WM_QUIT) {
                 should_run = false;
             }

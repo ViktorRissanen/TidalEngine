@@ -2,14 +2,14 @@
 
 namespace console {
 
-	bool create();
-	void destroy();
+	bool initialize();
+	void cleanup();
 
 	struct Console {
 		const bool successful;
 
-		Console() : successful{ create() } {}
-		~Console() { destroy(); }
+		Console() : successful{ initialize() } {}
+		~Console() { cleanup(); }
 	};
 
 	void set_visible(bool visible);
